@@ -1,16 +1,6 @@
 namespace IFDotNet;
 using Spectre.Console;
 
-public class GameState
-{
-	public Room CurrentRoom;
-
-	public GameState(Room startingRoom)
-	{
-		CurrentRoom = startingRoom;
-	}
-}
-
 public static class Runner
 {
 	public static void Run(World world)

@@ -1,10 +1,13 @@
 namespace IFDotNet;
 using Spectre.Console;
 
+/// <summary>Look around</summary>
 public class LookMove : IMove
 {
+	///
 	public string Command {get; set; } = "look";
 
+	///
 	public void Run(string[] Args, Player player, Room room, GameState gameState)
 	{
 		AnsiConsole.MarkupLine($"[bold]{room.Name}[/]");
