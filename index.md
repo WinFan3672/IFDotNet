@@ -1,11 +1,9 @@
 ---
 _layout: landing
 ---
+# IF.NET
 
-# This is the **HOMEPAGE**.
+IF.NET is a free and open-source [.NET] library for creating interactive fiction. 
 
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
-
-## Quick Start Notes:
-
-1. Add images to the *images* folder if the file is referencing an image.
+> [!NOTE]
+> IF.NET is in early stages of development and is not complete.

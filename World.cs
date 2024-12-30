@@ -19,7 +19,7 @@ public class World
 	/// <summary>Story description</summary>
 	public string Description {get; private set; }
 
-	/// <summary>If set to <code>true</code>, the author is not shown when first running the game</summary>
+	/// <summary>If set to true, the author is not shown when first running the game</summary>
 	public bool AuthorialModesty = false;
 
 	/// <summary>Called when the game is started</summary>
