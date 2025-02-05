@@ -15,10 +15,17 @@ public class Thing
 	/// <remarks>The player will see this when using <see cref="LookMove"/></remarks>
 	public string Description {get; private set; }
 
+	
 	/// 
 	public Thing(string name, string description)
 	{
 		Name = name;
 		Description = description;
 	}
+
+	/// <summary>
+	/// Called before grabbing an object.
+	/// </summary>
+	/// <returns>Returns true if the object can be grabbed</returns>
+	public virtual bool Grab() { return false; }
 }

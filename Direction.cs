@@ -1,5 +1,8 @@
 namespace IFDotNet;
 
+/// <summary>
+/// Compass direction
+/// </summary>
 public enum Direction
 {
     /// 

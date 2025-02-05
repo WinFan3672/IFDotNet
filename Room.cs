@@ -36,11 +36,25 @@ public class Room
 
 	private Direction GetOpposite(Direction dir)
 	{
-		var currentIndex = (int)dir;
-		var oppositeIndex = (currentIndex + 4) % 8;
-		Console.WriteLine(currentIndex);
-		Console.WriteLine(oppositeIndex);
-		return (Direction)Enum.GetValues(typeof(Direction)).GetValue(oppositeIndex);
+		if (dir == Direction.Up)
+		{
+			return Direction.Down;
+		}
+		else if (dir == Direction.Down)
+		{
+			return Direction.Up;
+		}
+		else
+		{
+            var currentIndex = (int)dir;
+            var oppositeIndex = (currentIndex + 4) % 8;
+            Console.WriteLine(currentIndex);
+            Console.WriteLine(oppositeIndex);
+#pragma warning disable CS8605 // Unboxing a possibly null value.
+            return (Direction)Enum.GetValues(typeof(Direction)).GetValue(oppositeIndex);
+#pragma warning restore CS8605 // Unboxing a possibly null value.
+        }
+		
 	}
 
 	/// <summary>Connects a room to this room, letting you move between them</summary>
@@ -55,5 +69,31 @@ public class Room
 		{
 			room.Connections[GetOpposite(dir)] = this;
 		}
+	}
+
+	/// <summary>
+	/// Adds a thing to the room.
+	/// </summary>
+	public void Add(Thing thing)
+	{ 
+		Things.Add(thing);
+	}
+
+    /// <summary>
+    /// Finds a thing in a room from its name
+    /// </summary>
+    /// <param name="name">The name of the thing</param>
+    /// <param name="strictMatch">Case sensitivity.</param>
+    /// <returns>The first instance of a <see cref="Thing"/> with a matching name</returns>
+    public Thing? FindThing(string name, bool strictMatch = true)
+	{
+		foreach (var thing in Things)
+		{
+			if (thing.Name == name || !strictMatch && name.ToLower() == thing.Name.ToLower())
+			{
+				return thing;
+			}
+		}
+		return null;
 	}
 }

@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace IFDotNet;
 
 /// <summary>Base move interface</summary>

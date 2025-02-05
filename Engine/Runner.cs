@@ -26,7 +26,7 @@ public static class Runner
 		List<string> SplitCommand;
 		List<string> Args;
 
-		Console.Clear();
+		//Console.Clear();
 		if (world.AuthorialModesty)
 		{
 			AnsiConsole.MarkupLine($"[bold]{world.StoryTitle}[/]");

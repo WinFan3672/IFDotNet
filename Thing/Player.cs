@@ -12,10 +12,13 @@ public class Player : Person
 		new QuitGame(),
 		new GoMove(),
 		new SayMove(),
+		new TalkMove(),
+		new GrabMove(),
 	};
 
 	/// <summary>Command aliases</summary>
 	/// <seealso cref="IMove" />
+	/// <remarks>You cannot have aliases that span multiple arguments, like 'look at' --> 'look'</remarks>
 	public Dictionary<string, string> Aliases = new()
 	{
 		{ "l", "look" },
