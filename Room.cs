@@ -10,6 +10,10 @@ public class Room
 	/// <seealso cref="Thing" />
 	/// <seealso cref="Person" />
 	public List<Thing> Things = new();
+	/// <summary>
+	/// The people occupying the room.
+	/// </summary>
+	public List<Person> Occupants = new();
 
 	/// <summary>
 	///  Called when entering the room
