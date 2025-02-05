@@ -56,6 +56,14 @@ public class GoMove : IMove
 			{
 				Go(Direction.NorthWest, player, room, gs);
 			}
+			else if (move == "u" || move == "up")
+			{
+				Go(Direction.Up, player, room, gs);
+			}
+			else if (move == "d" || move == "down")
+			{
+				Go(Direction.Down, player, room, gs);
+			}
 			else
 			{
 				throw new ErrorMessageException("I don't know which way *that* is");

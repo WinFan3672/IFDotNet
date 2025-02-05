@@ -7,7 +7,7 @@ public class LookMove : IMove
 	///
 	public string Command {get; set; } = "look";
 
-	///
+	/// <inheritdoc />
 	public void Run(string[] Args, Player player, Room room, GameState gameState)
 	{
 		AnsiConsole.MarkupLine($"[bold]{room.Name}[/]");

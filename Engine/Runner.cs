@@ -1,8 +1,18 @@
 namespace IFDotNet;
 using Spectre.Console;
 
+/// <summary>
+/// Game runner
+/// </summary>
 public static class Runner
 {
+	/// <summary>
+	/// Runs game.
+	/// </summary>
+	/// <param name="world">World to run</param>
+	/// <exception cref="ArgumentException">World has no rooms</exception>
+	/// <remarks>Start by creating a <see cref="World"/> and go from there</remarks>
+	/// <seealso cref="Spectre.Console"/>
 	public static void Run(World world)
 	{
 		if (world.Rooms.Count == 0)
