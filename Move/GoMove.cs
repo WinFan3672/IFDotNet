@@ -56,14 +56,6 @@ public class GoMove : IMove
 			{
 				Go(Direction.NorthWest, player, room, gs);
 			}
-			else if (move == "u" || move == "up")
-			{
-				Go(Direction.Up, player, room, gs);
-			}
-			else if (move == "d" || move == "down")
-			{
-				Go(Direction.Down, player, room, gs);
-			}
 			else
 			{
 				throw new ErrorMessageException("I don't know which way *that* is");
@@ -78,7 +70,15 @@ public class GoMove : IMove
 			}
 			else
 			{
-				gs.CurrentRoom = room.Connections[dir] ?? throw new ArgumentNullException();
+				Room nextRoom = room.Connections[dir] ?? throw new ArgumentNullException();
+				if (nextRoom.CheckEnter() && room.CheckLeave())
+				{
+					gs.CurrentRoom = nextRoom;
+					room.OnLeave();
+					nextRoom.OnEnter();
+				}
+				else
+					throw new ErrorMessageException("You can't go there.");
 			}
 
 			IMove lookMove = player.GetMove("look") ?? throw new ArgumentNullException("LookMove is not in Player.Moves");

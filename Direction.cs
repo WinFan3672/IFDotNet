@@ -21,9 +21,5 @@ public enum Direction
 	West,
     /// 
 	NorthWest,
-    /// 
-    Up,
-    /// 
-    Down,
 }
 

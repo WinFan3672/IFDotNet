@@ -11,6 +11,16 @@ public class Room
 	/// <seealso cref="Person" />
 	public List<Thing> Things = new();
 
+	/// <summary>
+	///  Called when entering the room
+	/// </summary>
+	public Action OnEnter = () => { };
+
+	public Action OnLeave = () => { };
+
+	public Func<bool> CheckEnter = () => { return true; };
+	public Func<bool> CheckLeave = () => { return true; };
+
 	/// <summary>All rooms connected to this room</summary>
 	public Dictionary<Direction, Room?> Connections = new()
 	{
@@ -36,26 +46,14 @@ public class Room
 
 	private Direction GetOpposite(Direction dir)
 	{
-		if (dir == Direction.Up)
-		{
-			return Direction.Down;
-		}
-		else if (dir == Direction.Down)
-		{
-			return Direction.Up;
-		}
-		else
-		{
-            var currentIndex = (int)dir;
-            var oppositeIndex = (currentIndex + 4) % 8;
-            Console.WriteLine(currentIndex);
-            Console.WriteLine(oppositeIndex);
+        var currentIndex = (int)dir;
+        var oppositeIndex = (currentIndex + 4) % 8;
+        Console.WriteLine(currentIndex);
+        Console.WriteLine(oppositeIndex);
 #pragma warning disable CS8605 // Unboxing a possibly null value.
-            return (Direction)Enum.GetValues(typeof(Direction)).GetValue(oppositeIndex);
+        return (Direction)Enum.GetValues(typeof(Direction)).GetValue(oppositeIndex);
 #pragma warning restore CS8605 // Unboxing a possibly null value.
-        }
-		
-	}
+    }
 
 	/// <summary>Connects a room to this room, letting you move between them</summary>
 	/// <param name="dir">Direction to connect in (e.g. <see cref="Direction.South" /> of this room)</param>
