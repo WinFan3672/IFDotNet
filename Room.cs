@@ -14,12 +14,13 @@ public class Room
 	/// The people occupying the room.
 	/// </summary>
 	public List<Person> Occupants = new();
+	private static Random random = new Random();
 
 	/// <summary>
 	///  Called when entering the room
 	/// </summary>
 	public Action OnEnter = () => { };
-
+	public Action OnLook = () => { };
 	public Action OnLeave = () => { };
 
 	public Func<bool> CheckEnter = () => { return true; };
@@ -97,5 +98,22 @@ public class Room
 			}
 		}
 		return null;
+	}
+
+	/// <summary>
+	/// Selects a random compass direction that is not connected to a room
+	/// </summary>
+	/// <returns></returns>
+	/// <exception cref="ArgumentNullException"></exception>
+	public Direction PickDir()
+	{
+		var dirs = Enum.GetValues(typeof(Direction));
+		int index = random.Next(dirs.Length);
+		Direction dir = dirs.GetValue(index) as Direction? ?? throw new ArgumentNullException();
+		if (Connections[dir] != null) // Is connected
+			return PickDir();
+		else
+			return dir;
+			
 	}
 }

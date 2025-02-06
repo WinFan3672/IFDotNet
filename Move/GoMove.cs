@@ -11,7 +11,7 @@ public class GoMove : IMove
 	{
 		if (args.Length == 0)
 		{
-			Console.WriteLine("go [north/south/east/west]");
+			Console.WriteLine("Which way do you wanna go?");
 			return;
 		}
 		else if (args.Length != 1)

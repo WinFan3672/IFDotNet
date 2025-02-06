@@ -12,13 +12,21 @@ public class LookMove : IMove
 	{
 		if (Args.Length == 0)
 		{
-			AnsiConsole.MarkupLine($"[bold]{room.Name}[/]");
-			Console.WriteLine(room.Description);
+			if (room.Name != String.Empty)
+			{
+				AnsiConsole.MarkupLine($"[bold]{room.Name}[/]");
+			}
+			if (room.Description != String.Empty)
+			{
+				Console.WriteLine(room.Description);
+			}
 
 			foreach (Thing thing in room.Things)
 			{
 				Console.WriteLine($"You can see {thing.Name} here.");
 			}
+
+			room.OnLook();
 		}
 		else if (Args.Length == 1)
 		{
