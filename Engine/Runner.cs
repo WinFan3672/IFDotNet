@@ -64,14 +64,27 @@ public static class Runner
 				Console.WriteLine(Ex.Message);
 				/*AnsiConsole.MarkupLine($"[bold red]error[/]: {Ex.Message}");*/
 			}
+			catch (PlayerDeathException Ex)
+			{
+				Console.WriteLine(Ex.Message);
+                AnsiConsole.MarkupLine("[bold red]You died![/]");
+                Console.Write("Press any key to exit the game.");
+				Console.ReadKey();
+				return;
+			}
 		}
 	}
+
+	private static void RunCommand(CommandArgPair pair, World world, GameState gs)
+		{
+			RunCommand(pair.Command, pair.Args, world, gs);
+		}
 
 	private static void RunCommand(string command, string[] args, World world, GameState gs)
 	{
 		if (world.Player.Aliases.Keys.Contains(command))
 		{
-			RunCommand(world.Player.Aliases[command], args, world, gs);
+			RunCommand(new CommandArgPair(world.Player.Aliases[command]), world, gs);
 			return; // If omitted it will try executing the alias without parsing it
 		}
 

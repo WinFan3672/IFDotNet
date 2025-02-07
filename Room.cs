@@ -16,12 +16,34 @@ public class Room
 	public List<Person> Occupants = new();
 	private static Random random = new Random();
 
+
+    private bool Entered = false;
+	private bool Left = false;
+
+    /// <summary>
+    ///  Called when entering the room
+    /// </summary>
+	/// <remarks>The Room value is the current room</remarks>
+    public Action<Room> OnEnter = (room) => {
+		if (!room.Entered)
+		{
+			room.Entered = true;
+			room.OnFirstEnter();
+		}
+	};
 	/// <summary>
-	///  Called when entering the room
+	/// Called when entering for the first time only.
 	/// </summary>
-	public Action OnEnter = () => { };
+	public Action OnFirstEnter = () => { };
+	public Action OnFirstLeave = () => { };
 	public Action OnLook = () => { };
-	public Action OnLeave = () => { };
+	public Action<Room> OnLeave = (room) => {
+		if (!room.Entered)
+		{
+			room.Entered = true;
+			room.OnFirstLeave();
+		}
+	};
 
 	public Func<bool> CheckEnter = () => { return true; };
 	public Func<bool> CheckLeave = () => { return true; };
@@ -105,10 +127,15 @@ public class Room
 	/// </summary>
 	/// <returns></returns>
 	/// <exception cref="ArgumentNullException"></exception>
-	public Direction PickDir()
+	public Direction PickDir(bool diagonal = true)
 	{
 		var dirs = Enum.GetValues(typeof(Direction));
 		int index = random.Next(dirs.Length);
+		if (!diagonal && index % 2 != 0)
+		{
+			// This relies on the fact that the indexes for the non-diagonal compass directions are even
+			index--;
+		}
 		Direction dir = dirs.GetValue(index) as Direction? ?? throw new ArgumentNullException();
 		if (Connections[dir] != null) // Is connected
 			return PickDir();

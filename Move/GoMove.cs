@@ -74,8 +74,8 @@ public class GoMove : IMove
 				if (nextRoom.CheckEnter() && room.CheckLeave())
 				{
 					gs.CurrentRoom = nextRoom;
-					room.OnLeave();
-					nextRoom.OnEnter();
+					room.OnLeave(room);
+					nextRoom.OnEnter(nextRoom);
 				}
 				else
 					throw new ErrorMessageException("You can't go there.");

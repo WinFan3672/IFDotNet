@@ -13,3 +13,13 @@ public class ErrorMessageException : Exception
     /// <summary>Inherit the message of an <see cref="Exception"/></summary>
     public ErrorMessageException(Exception ex): base(ex.Message) {}
 }
+
+/// <summary>
+/// Exception thrown when the player dies.
+/// </summary>
+public class PlayerDeathException : Exception
+{
+    public PlayerDeathException() : base(string.Empty) {}
+    /// <param name="message">Death message</param>
+    public PlayerDeathException(string message) : base(message) { }
+}

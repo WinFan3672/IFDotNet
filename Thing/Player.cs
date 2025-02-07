@@ -1,7 +1,7 @@
 namespace IFDotNet;
 
 /// <summary>The player object</summary>
-public class Player : Person
+public sealed class Player : Person
 {
 	/// <summary>The commands the player can run</summary>
 	/// <remarks>IF.NET calls commands moves</remarks>
