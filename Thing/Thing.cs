@@ -27,5 +27,5 @@ public class Thing
 	/// Called before grabbing an object.
 	/// </summary>
 	/// <returns>Returns true if the object can be grabbed</returns>
-	public virtual bool Grab() { return false; }
+	public Func<bool> CheckGrab = () => { return true; };
 }

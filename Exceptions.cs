@@ -19,6 +19,7 @@ public class ErrorMessageException : Exception
 /// </summary>
 public class PlayerDeathException : Exception
 {
+    /// 
     public PlayerDeathException() : base(string.Empty) {}
     /// <param name="message">Death message</param>
     public PlayerDeathException(string message) : base(message) { }

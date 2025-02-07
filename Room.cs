@@ -21,7 +21,7 @@ public class Room
 	private bool Left = false;
 
     /// <summary>
-    ///  Called when entering the room
+    ///  Called when entering the room.
     /// </summary>
 	/// <remarks>The Room value is the current room</remarks>
     public Action<Room> OnEnter = (room) => {
@@ -35,17 +35,34 @@ public class Room
 	/// Called when entering for the first time only.
 	/// </summary>
 	public Action OnFirstEnter = () => { };
+	/// <summary>
+	/// Called when leaving a room for the first time only.
+	/// </summary>
 	public Action OnFirstLeave = () => { };
+	/// <summary>
+	/// Called when running the 'look' command (without looking at something in particular).
+	/// </summary>
 	public Action OnLook = () => { };
+	/// <summary>
+	/// Called when leaving the room.
+	/// </summary>
 	public Action<Room> OnLeave = (room) => {
-		if (!room.Entered)
+		if (!room.Left)
 		{
-			room.Entered = true;
+			room.Left = true;
 			room.OnFirstLeave();
 		}
 	};
 
+	// TODO: Add the room as an argument in CheckEnter and CheckLeave
+
+	/// <summary>
+	/// Called to check if a player can enter a room.
+	/// </summary>
 	public Func<bool> CheckEnter = () => { return true; };
+	/// <summary>
+	/// Called to check if a player can leave a room.
+	/// </summary>
 	public Func<bool> CheckLeave = () => { return true; };
 
 	/// <summary>All rooms connected to this room</summary>
@@ -114,7 +131,9 @@ public class Room
 	{
 		foreach (var thing in Things)
 		{
-			if (thing.Name == name || !strictMatch && name.ToLower() == thing.Name.ToLower())
+			// Loose match - case insensitive and supports substring matching
+			// TODO: Make sure substring is at least one whole word long
+			if (thing.Name == name || !strictMatch && thing.Name.ToLower().Contains(name.ToLower()))
 			{
 				return thing;
 			}
@@ -142,5 +161,14 @@ public class Room
 		else
 			return dir;
 			
+	}
+
+	/// <summary>
+	/// Removes a thing from the room.
+	/// </summary>
+	/// <param name="thing">Thing to remove</param>
+	public void Remove(Thing thing)
+	{
+		Things.Remove(thing);
 	}
 }

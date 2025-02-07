@@ -23,13 +23,10 @@ public class Container : Thing
     public Container(string name, string description, bool canPickUp = true) : base(name, description)
     {
         CanPickUp = canPickUp;
+        CheckGrab += () => { return CanPickUp; };
     }
 
     /// <inheritdoc/>
-    public override bool Grab()
-    {
-        return CanPickUp;
-    }
 
     /// <summary>
     /// Adds a thing to the container.

@@ -11,17 +11,17 @@ public class Person : Thing
     /// Person's inventory
     /// </summary>
     public List<Thing> Inventory = new();
+    /// <summary>
+    /// Dialogue tree for this particular person.
+    /// </summary>
     public DialogueTree? Tree { get; set; }
 
     /// <inheritdoc/>
-    public override bool Grab()
-    {
-        return false;
-    }
 
     /// 
     public Person(string name, string description = "It's rude to stare.", DialogueTree? tree = null) : base(name, description)
     {
         Tree = tree;
+        CheckGrab += () => { return false; };
     }
 }

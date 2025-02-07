@@ -12,29 +12,42 @@ using Spectre.Console;
 /// </summary>
 public class DialogueTree : IEnumerable
 {
+    /// <summary>
+    /// Dialogue options
+    /// </summary>
     public List<DialogueTree> Choices { get; private set; } = new List<DialogueTree>();
+    /// <summary>
+    /// What the character says
+    /// </summary>
     public string VoiceLine { get; set; }
+    /// <summary>
+    /// Who says it
+    /// </summary>
     public string? VoiceActor { get; set; }
 
     private static Random rand = new Random();
 
+    /// 
     public DialogueTree(string voiceLine)
     {
         VoiceLine = voiceLine;
     }
 
+    /// 
     public DialogueTree(string voiceLine, string voiceActor)
     { 
         VoiceLine = voiceLine;
         VoiceActor = voiceActor;
     }
 
+    /// 
     public DialogueTree(string voiceLine, List<DialogueTree> choices)
     {
         VoiceLine = voiceLine;
         Choices = choices;
     }
 
+    /// 
     public DialogueTree(string voiceLine, string voiceActor, List<DialogueTree> choices)
     {
         VoiceLine = voiceLine;
@@ -42,6 +55,9 @@ public class DialogueTree : IEnumerable
         Choices = choices;
     }
 
+    /// <summary>
+    /// Executes this dialouge tree.
+    /// </summary>
     public void Run()
     {
         DialogueTree.Run(this);
@@ -74,11 +90,19 @@ public IEnumerator GetEnumerator()
         return Choices.GetEnumerator();
     }
 
+    /// <summary>
+    /// Add a choice.
+    /// </summary>
+    /// <param name="choice">Choice to add</param>
     public void Add(DialogueTree choice)
     { 
         Choices.Add(choice);
     }
 
+    /// <summary>
+    /// Picks a random choice.
+    /// </summary>
+    /// <returns>Random choice</returns>
     public DialogueTree Pick()
     {
         return Choices[rand.Next(Choices.Count)];
@@ -97,6 +121,11 @@ public IEnumerator GetEnumerator()
         }
     }
 
+    /// <summary>
+    /// Finds a dialogue choice by its voiceline.
+    /// </summary>
+    /// <param name="voiceLine">Voice line to search</param>
+    /// <returns>The dialogue choice if <c>voiceLine</c> is an exact match.</returns>
     public DialogueTree? Get(string voiceLine)
     {
         foreach (var choice in Choices)
