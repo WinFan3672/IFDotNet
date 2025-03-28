@@ -27,6 +27,29 @@ public class Room
 	/// <summary>Room description</summary>
 	public string Description {get; private set; }
 
+	private bool hasEnter = false;
+	private bool hasExit = false;
+
+	/// <summary>
+	/// Called every time the player enters the room
+	/// </summary>
+	public Action<Room> OnEnter = (Room room) => { if (!room.hasEnter) { room.OnFirstEnter(room); } };
+
+	/// <summary>
+	/// Called every time the player exits the room
+	/// </summary>
+	public Action<Room> OnExit = (Room room) => { if(!room.hasExit) { room.OnFirstExit(room); } };
+
+	/// <summary>
+	/// Called the first time the player enters the room
+	/// </summary>
+	public Action<Room> OnFirstEnter = (Room room) => { room.hasEnter = true; };
+
+	/// <summary>
+	/// Called the first time the player exits the room
+	/// </summary>
+	public Action<Room> OnFirstExit = (Room room) => { room.hasExit = true; };
+
 	///
 	public Room(string name, string description)
 	{

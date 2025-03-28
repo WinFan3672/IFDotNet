@@ -65,13 +65,10 @@ public class GoMove : IMove
 		void Go(Direction dir, Player player, Room room, GameState gs)
 		{
 			if (room.Connections[dir] == null)
-			{
 				throw new ErrorMessageException("There's nothing that way.");
-			}
-			else
-			{
-				gs.CurrentRoom = room.Connections[dir] ?? throw new ArgumentNullException();
-			}
+			gs.CurrentRoom.OnExit(gs.CurrentRoom); // Call OnExit() for previous room
+			gs.CurrentRoom = room.Connections[dir] ?? throw new ArgumentNullException();
+			gs.CurrentRoom.OnEnter(gs.CurrentRoom); // Call OnEnter() for next room
 
 			IMove lookMove = player.GetMove("look") ?? throw new ArgumentNullException("LookMove is not in Player.Moves");
 			lookMove.Run(new string[] {}, player, gs.CurrentRoom, gs);

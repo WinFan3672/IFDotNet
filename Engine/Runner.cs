@@ -37,6 +37,9 @@ public static class Runner
 
 		}
 
+		world.Events.Subscribe<MovePlayerEvent>((MovePlayerEvent data) => { gs.CurrentRoom = data.Target; if (data.Look) { world.Player.GetMove("look").Run(new string[] {}, world.Player, gs.CurrentRoom, gs); } });
+		world.OnStart(world);
+
 		while (true)
 		{
 			Console.Write("> ");
@@ -59,6 +62,12 @@ public static class Runner
 
 	private static void RunCommand(string command, string[] args, World world, GameState gs)
 	{
+		if (command == "clear" || command == "cls")
+		{
+			Console.Clear();
+			return;
+		}
+
 		if (world.Player.Aliases.Keys.Contains(command))
 		{
 			RunCommand(world.Player.Aliases[command], args, world, gs);
