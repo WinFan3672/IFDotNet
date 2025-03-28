@@ -22,6 +22,8 @@ public class Room
 		{ Direction.SouthWest, null },
 		{ Direction.West, null },
 		{ Direction.NorthWest, null },
+		{ Direction.Up, null },
+		{ Direction.Down, null },
 	};
 
 	/// <summary>Room description</summary>
@@ -29,6 +31,11 @@ public class Room
 
 	private bool hasEnter = false;
 	private bool hasExit = false;
+
+	/// <summary>
+	/// Per-room event bus
+	/// </summary>
+	public EventBus Events = new();
 
 	/// <summary>
 	/// Called every time the player enters the room

@@ -20,6 +20,7 @@ public class Player : Person
 	{
 		{ "l", "look" },
 		{ "exit", "quit" },
+
 		{ "north", "go south" },
 		{ "northeast", "go northeast" },
 		{ "north-east", "go northeast" },
@@ -32,6 +33,9 @@ public class Player : Person
 		{ "west", "go west" },
 		{ "northwest", "go northwest" },
 		{ "north-west", "go northwest" },
+		{ "up", "go up" },
+		{ "down", "go down" },
+
 		{ "n", "go north" },
 		{ "ne", "go northeast" },
 		{ "e", "go east" },
@@ -40,6 +44,8 @@ public class Player : Person
 		{ "sw", "go southwest" },
 		{ "w", "go west" },
 		{ "nw", "go northwest" },
+		{ "u", "go up" },
+		{ "d", "go down" },
 
 		{ "yes", "say yes" },
 		{ "no", "say no" },

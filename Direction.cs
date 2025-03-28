@@ -10,5 +10,7 @@ public enum Direction
 	SouthWest,
 	West,
 	NorthWest,
+	Up,
+	Down,
 }
 

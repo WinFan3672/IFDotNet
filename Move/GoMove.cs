@@ -21,44 +21,54 @@ public class GoMove : IMove
 		else
 		{
 			string move = args[0].ToLower();
-
-			// This is unwieldy but there are eight directions and a variable amount of string values, so...
-			// Maybe a 'better' solution would be a Dictionary<string[], Direction>
-			if (move == "n" || move == "north")
+			switch(move)
 			{
-				Go(Direction.North, player, room, gs);
-			}
-			else if (move == "ne" || move == "northeast" || move == "north-east")
-			{
-				Go(Direction.NorthEast, player, room, gs);
-			}
-			else if (move == "e" || move == "east")
-			{
-				Go(Direction.East, player, room, gs);
-			}
-			else if (move == "se" || move == "south-east" || move == "southeast")
-			{
-				Go(Direction.SouthEast, player, room, gs);
-			}
-			else if (move == "s" || move == "south")
-			{
-				Go(Direction.South, player, room, gs);
-			}
-			else if (move == "sw" || move == "southwest" || move == "south-west")
-			{
-				Go(Direction.SouthWest, player, room, gs);
-			}
-			else if (move == "w" || move == "west")
-			{
-				Go(Direction.West, player, room, gs);
-			}
-			else if (move == "nw" || move == "northwest" || move == "north-west")
-			{
-				Go(Direction.NorthWest, player, room, gs);
-			}
-			else
-			{
-				throw new ErrorMessageException("I don't know which way *that* is");
+				case "n":
+				case "north":
+					Go(Direction.North, player, room, gs);
+					break;
+				case "ne":
+				case "northeast":
+				case "north-east":
+					Go(Direction.NorthEast,  player, room, gs);
+					break;
+				case "e":
+				case "east":
+					Go(Direction.East, player, room, gs);
+					break;
+				case "se":
+				case "south-east":
+				case "southeast":
+					Go(Direction.SouthEast, player, room, gs);
+					break;
+				case "s":
+				case "south":
+					Go(Direction.South, player, room, gs);
+					break;
+				case "sw":
+				case "southwest":
+				case "south-west":
+					Go(Direction.SouthWest, player, room, gs);
+					break;
+				case "w":
+				case "west":
+					Go(Direction.West, player, room, gs);
+					break;
+				case "nw":
+				case "northwest":
+				case "north-west":
+					Go(Direction.NorthWest, player, room, gs);
+					break;
+				case "u":
+				case "up":
+					Go(Direction.Up, player, room, gs);
+					break;
+				case "d":
+				case "down":
+					Go(Direction.Down, player, room, gs);
+					break;
+				default:
+					throw new ErrorMessageException("I don't know which way *that* is.");
 			}
 		}
 
